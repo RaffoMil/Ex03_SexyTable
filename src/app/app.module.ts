@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { MainComponent } from './features/main/main.component';
+import { MainComponent } from './core/layout/main/main.component';
 
 @NgModule({
   declarations: [
