@@ -1,0 +1,53 @@
+<input type="button" value="Add new Pope" (click)="ciccio()">
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table" style="border: 1px solid black">
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>Id</th>
+    <td mat-cell *matCellDef="let element" class="td-border">
+      {{element.id}}
+      <div *ngIf="element.id != null then ciao else newPopeForm"></div>
+      <ng-template #ciao>ciao</ng-template>
+      <ng-template #newPopeForm><input type="text" value="name">tante cose</ng-template>
+    </td>
+
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let element" class="td-border">{{element.name}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="holyName">
+    <th mat-header-cell *matHeaderCellDef>Holy Name</th>
+    <td mat-cell *matCellDef="let element" class="td-border">{{element.holyName}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="level">
+    <th mat-header-cell *matHeaderCellDef>Level</th>
+    <td mat-cell *matCellDef="let element" class="td-border">{{element.level}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="schoolOfPrayer">
+    <th mat-header-cell *matHeaderCellDef>School</th>
+    <td mat-cell *matCellDef="let element" class="td-border">{{element.schoolOfPrayer}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="specialization">
+    <th mat-header-cell *matHeaderCellDef>Specialization</th>
+    <td mat-cell *matCellDef="let element" class="td-border">{{element.specialization}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="holyCrusadesStarted">
+    <th mat-header-cell *matHeaderCellDef>Holy Crusades</th>
+    <td mat-cell *matCellDef="let element" class="td-border">{{element.holyCrusadesStarted}}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr
+    mat-row
+    (click)="clickedRows.add(row)"
+    [class.demo-row-is-clicked]="clickedRows.has(row)"
+    *matRowDef="let row; columns: displayedColumns;"
+  ></tr>
+</table>
+
