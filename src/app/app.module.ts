@@ -14,7 +14,6 @@ import {FeaturesModule} from "./features/features.module";
     BrowserModule,
     LayoutModule,
     BrowserAnimationsModule,
-    BrowserAnimationsModule,
     FeaturesModule
   ],
   providers: [],
