@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import {MainComponent} from "./main/main.component";
-
-
+import {FeaturesModule} from "../../features/features.module";
 
 @NgModule({
   declarations: [
@@ -18,7 +17,8 @@ import {MainComponent} from "./main/main.component";
     MainComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FeaturesModule
   ]
 })
 export class LayoutModule { }
