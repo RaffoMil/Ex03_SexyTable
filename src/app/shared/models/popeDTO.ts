@@ -1,5 +1,6 @@
 export interface PopeDTO {
-  id?: number;
+  isActive: boolean;
+  id: number;
   name?: string;
   holyName?: string;
   level?: number;

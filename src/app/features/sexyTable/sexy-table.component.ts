@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {PopeDTO} from "../../shared/models/popeDTO";
 
-const ELEMENT_DATA: PopeDTO[] = [
+let ELEMENT_DATA: PopeDTO[] = [
   {
+    isActive: true,
     id: 0,
     name: 'Joseph Aloisius Ratzinger',
     holyName: 'Benedetto XVI',
@@ -13,6 +14,7 @@ const ELEMENT_DATA: PopeDTO[] = [
     holyCrusadesStarted: 10
   },
   {
+    isActive: true,
     id: 1,
     name: 'Jorge Mario Bergoglio',
     holyName: 'Francesco I',
@@ -22,6 +24,7 @@ const ELEMENT_DATA: PopeDTO[] = [
     holyCrusadesStarted: 3
   },
   {
+    isActive: true,
     id: 2,
     name: 'Pietro Angelerio',
     holyName: 'Celestino V',
@@ -39,19 +42,44 @@ const ELEMENT_DATA: PopeDTO[] = [
 })
 
 export class SexyTableComponent {
-  sexyBool: boolean = true;
   displayedColumns: string[];
   dataSource: MatTableDataSource<PopeDTO>;
   clickedRows = new Set<PopeDTO>();
+  maxId = Math.max(...ELEMENT_DATA.map(e => e.id), 0);
+  popeToAdd:PopeDTO = {
+    isActive: false,
+    id: this.maxId + 1,
+    name: '',
+    holyName: '',
+    schoolOfPrayer: '',
+    specialization: ''
+  };
 
   constructor() {
     this.dataSource = new MatTableDataSource<PopeDTO>(ELEMENT_DATA);
     this.displayedColumns = ['id', 'name', 'holyName', 'level', 'schoolOfPrayer', 'specialization', 'holyCrusadesStarted'];
   }
 
-  ciccio() {
-    this.sexyBool = !this.sexyBool;
-    
-    console.log(this.sexyBool);
+  toggleNewPopeLine() {
+    if(!ELEMENT_DATA.find(e => e.name == '')){
+      this.popeToAdd = {
+        isActive: false,
+        id: this.maxId + 1,
+        name: '',
+        holyName: '',
+        schoolOfPrayer: '',
+        specialization: ''
+      };
+      this.maxId = Math.max(...ELEMENT_DATA.map(e => e.id), 0);
+      this.popeToAdd.id = this.maxId + 1;
+
+      ELEMENT_DATA.push(this.popeToAdd);
+      this.dataSource.data = ELEMENT_DATA;
+    }
+  }
+
+  addNewPope() {
+    this.popeToAdd.isActive = true;
+    this.dataSource.data = ELEMENT_DATA;
   }
 }

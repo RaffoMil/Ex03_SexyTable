@@ -1,43 +1,76 @@
-<input type="button" value="Add new Pope" (click)="ciccio()">
+<input type="button" value="Create new Pope" (click)="toggleNewPopeLine()">
+<input type="button" value="Add new Pope" (click)="addNewPope()">
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table" style="border: 1px solid black">
 
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>Id</th>
-    <td mat-cell *matCellDef="let element" class="td-border">
-      <div *ngIf="element.id != null then ciao else newPopeForm"></div>
-        <ng-template #ciao>{{element.id}}</ng-template>
-        <ng-template #newPopeForm><input type="text" value="name"></ng-template>
-    </td>
+    <td mat-cell *matCellDef="let element" class="td-border">{{element.id}}</td>
   </ng-container>
 
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef>Name</th>
-    <td mat-cell *matCellDef="let element" class="td-border">{{element.name}}</td>
+    <td mat-cell *matCellDef="let element" class="td-border">
+      <div *ngIf="element.isActive then standardLine else newPopeForm"></div>
+      <ng-template #standardLine>{{element.name}}</ng-template>
+      <ng-template #newPopeForm>
+        <input type="text" name="name" [(ngModel)]="popeToAdd.name">
+      </ng-template>
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="holyName">
     <th mat-header-cell *matHeaderCellDef>Holy Name</th>
-    <td mat-cell *matCellDef="let element" class="td-border">{{element.holyName}}</td>
+    <td mat-cell *matCellDef="let element" class="td-border">
+      <div *ngIf="element.isActive then standardLine else newPopeForm"></div>
+      <ng-template #standardLine>{{element.holyName}}</ng-template>
+      <ng-template #newPopeForm>
+        <input type="text" name="holyName" [(ngModel)]="popeToAdd.holyName">
+      </ng-template>
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="level">
     <th mat-header-cell *matHeaderCellDef>Level</th>
-    <td mat-cell *matCellDef="let element" class="td-border">{{element.level}}</td>
+    <td mat-cell *matCellDef="let element" class="td-border">
+      <div *ngIf="element.isActive then standardLine else newPopeForm"></div>
+      <ng-template #standardLine>{{element.level}}</ng-template>
+      <ng-template #newPopeForm>
+        <input type="text" name="level" [(ngModel)]="popeToAdd.level">
+      </ng-template>
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="schoolOfPrayer">
     <th mat-header-cell *matHeaderCellDef>School</th>
-    <td mat-cell *matCellDef="let element" class="td-border">{{element.schoolOfPrayer}}</td>
+    <td mat-cell *matCellDef="let element" class="td-border">
+      <div *ngIf="element.isActive then standardLine else newPopeForm"></div>
+      <ng-template #standardLine>{{element.schoolOfPrayer}}</ng-template>
+      <ng-template #newPopeForm>
+        <input type="text" name="schoolOfPrayer" [(ngModel)]="popeToAdd.schoolOfPrayer">
+      </ng-template>
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="specialization">
     <th mat-header-cell *matHeaderCellDef>Specialization</th>
-    <td mat-cell *matCellDef="let element" class="td-border">{{element.specialization}}</td>
+    <td mat-cell *matCellDef="let element" class="td-border">
+      <div *ngIf="element.isActive then standardLine else newPopeForm"></div>
+      <ng-template #standardLine>{{element.specialization}}</ng-template>
+      <ng-template #newPopeForm>
+        <input type="text" name="specialization" [(ngModel)]="popeToAdd.specialization">
+      </ng-template>
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="holyCrusadesStarted">
     <th mat-header-cell *matHeaderCellDef>Holy Crusades</th>
-    <td mat-cell *matCellDef="let element" class="td-border">{{element.holyCrusadesStarted}}</td>
+    <td mat-cell *matCellDef="let element" class="td-border">
+      <div *ngIf="element.isActive then standardLine else newPopeForm"></div>
+      <ng-template #standardLine>{{element.holyCrusadesStarted}}</ng-template>
+      <ng-template #newPopeForm>
+        <input type="text" name="holyCrusadesStarted" [(ngModel)]="popeToAdd.holyCrusadesStarted">
+      </ng-template>
+    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
